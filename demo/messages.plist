@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>LastDate</key>
+		<date>2023-07-10T02:20:25Z</date>
+		<key>lastMsg</key>
+		<string>哈哈哈哈哈哈笑死了</string>
+		<key>nickName</key>
+		<string>时随风</string>
+		<key>photoName</key>
+		<string>icon1</string>
+	</dict>
+	<dict>
+		<key>LastDate</key>
+		<date>2023-07-10T18:10:25Z</date>
+		<key>lastMsg</key>
+		<string>可以</string>
+		<key>nickName</key>
+		<string>懿</string>
+		<key>photoName</key>
+		<string>icon2</string>
+	</dict>
+	<dict>
+		<key>LastDate</key>
+		<date>2023-07-10T02:20:25Z</date>
+		<key>lastMsg</key>
+		<string>对方已成功接收文件</string>
+		<key>nickName</key>
+		<string>Z</string>
+		<key>photoName</key>
+		<string>icon3</string>
+	</dict>
+	<dict>
+		<key>LastDate</key>
+		<date>2023-07-10T00:20:25Z</date>
+		<key>lastMsg</key>
+		<string>[动画表情]</string>
+		<key>nickName</key>
+		<string>tour1st</string>
+		<key>photoName</key>
+		<string>icon16</string>
+	</dict>
+	<dict>
+		<key>LastDate</key>
+		<date>2023-07-10T02:20:25Z</date>
+		<key>lastMsg</key>
+		<string>你还在学校吗</string>
+		<key>nickName</key>
+		<string>隐居于月球</string>
+		<key>photoName</key>
+		<string>icon6</string>
+	</dict>
+</array>
+</plist>
