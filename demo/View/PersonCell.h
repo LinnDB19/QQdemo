@@ -11,9 +11,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PersonCell : UITableViewCell
 
-@property(strong, nonatomic) UIView *topSepaView;
-@property(strong, nonatomic) UIView *botSepaView;
-
 -(void)setFrame:(CGRect)frame;
 
 @end

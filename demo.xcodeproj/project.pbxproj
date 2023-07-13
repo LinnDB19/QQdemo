@@ -7,7 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36554FBF98E8E0DD10CD2E2D /* libPods-demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C18A67B570ABF711D0A042C0 /* libPods-demo.a */; };
 		4010473D2A5B9F7C00C867C4 /* messages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4010473C2A5B9F7C00C867C4 /* messages.plist */; };
+		40358FD72A5E793000526877 /* NewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40358FD62A5E793000526877 /* NewsTableViewController.m */; };
+		40358FDE2A5E7E3100526877 /* TopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40358FDD2A5E7E3100526877 /* TopView.m */; };
+		40358FE12A5E7EC000526877 /* BodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40358FE02A5E7EC000526877 /* BodyView.m */; };
+		40358FE42A5E7ED600526877 /* TextBodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40358FE32A5E7ED600526877 /* TextBodyView.m */; };
+		40358FE72A5E7F0900526877 /* PicBodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40358FE62A5E7F0900526877 /* PicBodyView.m */; };
+		40358FEA2A5E7F2800526877 /* BottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40358FE92A5E7F2800526877 /* BottomView.m */; };
+		40358FED2A5E800800526877 /* ANewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40358FEC2A5E800800526877 /* ANewView.m */; };
 		404A984F2A52B75E0021556B /* friends.plist in Resources */ = {isa = PBXBuildFile; fileRef = 404A984E2A52B75E0021556B /* friends.plist */; };
 		405913FC2A4AE4990073C036 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 405913FB2A4AE4990073C036 /* TableViewController.m */; };
 		40A76E102A4EA7EC00969496 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A76E0F2A4EA7EC00969496 /* Person.m */; };
@@ -49,6 +57,20 @@
 
 /* Begin PBXFileReference section */
 		4010473C2A5B9F7C00C867C4 /* messages.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = messages.plist; sourceTree = "<group>"; };
+		40358FD52A5E793000526877 /* NewsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsTableViewController.h; sourceTree = "<group>"; };
+		40358FD62A5E793000526877 /* NewsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewController.m; sourceTree = "<group>"; };
+		40358FDC2A5E7E3100526877 /* TopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopView.h; sourceTree = "<group>"; };
+		40358FDD2A5E7E3100526877 /* TopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopView.m; sourceTree = "<group>"; };
+		40358FDF2A5E7EC000526877 /* BodyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BodyView.h; sourceTree = "<group>"; };
+		40358FE02A5E7EC000526877 /* BodyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BodyView.m; sourceTree = "<group>"; };
+		40358FE22A5E7ED600526877 /* TextBodyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextBodyView.h; sourceTree = "<group>"; };
+		40358FE32A5E7ED600526877 /* TextBodyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextBodyView.m; sourceTree = "<group>"; };
+		40358FE52A5E7F0900526877 /* PicBodyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PicBodyView.h; sourceTree = "<group>"; };
+		40358FE62A5E7F0900526877 /* PicBodyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PicBodyView.m; sourceTree = "<group>"; };
+		40358FE82A5E7F2800526877 /* BottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BottomView.h; sourceTree = "<group>"; };
+		40358FE92A5E7F2800526877 /* BottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BottomView.m; sourceTree = "<group>"; };
+		40358FEB2A5E800800526877 /* ANewView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ANewView.h; sourceTree = "<group>"; };
+		40358FEC2A5E800800526877 /* ANewView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ANewView.m; sourceTree = "<group>"; };
 		404A984E2A52B75E0021556B /* friends.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = friends.plist; sourceTree = "<group>"; };
 		405913FA2A4AE4990073C036 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		405913FB2A4AE4990073C036 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
@@ -86,6 +108,9 @@
 		40F082462A5810FF005EF033 /* AMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMessage.m; sourceTree = "<group>"; };
 		40F082482A5813A8005EF033 /* MessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		40F082492A5813A8005EF033 /* MessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		5C97F5A504CBDF7702089946 /* Pods-demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demo.release.xcconfig"; path = "Target Support Files/Pods-demo/Pods-demo.release.xcconfig"; sourceTree = "<group>"; };
+		C18A67B570ABF711D0A042C0 /* libPods-demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED5BC84677DFAF3782C53CFD /* Pods-demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demo.debug.xcconfig"; path = "Target Support Files/Pods-demo/Pods-demo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36554FBF98E8E0DD10CD2E2D /* libPods-demo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +139,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		018697331BE1F68E9CE24948 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C18A67B570ABF711D0A042C0 /* libPods-demo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		40358FD42A5E78B000526877 /* news */ = {
+			isa = PBXGroup;
+			children = (
+				40358FD52A5E793000526877 /* NewsTableViewController.h */,
+				40358FD62A5E793000526877 /* NewsTableViewController.m */,
+			);
+			path = news;
+			sourceTree = "<group>";
+		};
+		40358FD82A5E7DAE00526877 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				40358FEB2A5E800800526877 /* ANewView.h */,
+				40358FEC2A5E800800526877 /* ANewView.m */,
+				40358FDC2A5E7E3100526877 /* TopView.h */,
+				40358FDD2A5E7E3100526877 /* TopView.m */,
+				40358FDF2A5E7EC000526877 /* BodyView.h */,
+				40358FE02A5E7EC000526877 /* BodyView.m */,
+				40358FE22A5E7ED600526877 /* TextBodyView.h */,
+				40358FE32A5E7ED600526877 /* TextBodyView.m */,
+				40358FE52A5E7F0900526877 /* PicBodyView.h */,
+				40358FE62A5E7F0900526877 /* PicBodyView.m */,
+				40358FE82A5E7F2800526877 /* BottomView.h */,
+				40358FE92A5E7F2800526877 /* BottomView.m */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
 		40A76E0D2A4EA74C00969496 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +191,7 @@
 		40A76E142A4EBEBA00969496 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				40358FD82A5E7DAE00526877 /* News */,
 				40A76E152A4EC01400969496 /* PersonCell.h */,
 				40A76E162A4EC01400969496 /* PersonCell.m */,
 				40A76E182A4ECCAD00969496 /* SectionView.h */,
@@ -146,6 +209,8 @@
 				40D197C62A47E80B00674955 /* demoTests */,
 				40D197D02A47E80B00674955 /* demoUITests */,
 				40D197A92A47E80800674955 /* Products */,
+				87400D38309FFE5A1EEB56CD /* Pods */,
+				018697331BE1F68E9CE24948 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -209,8 +274,19 @@
 				40D197B22A47E80800674955 /* ViewController.m */,
 				40F0823C2A57BE00005EF033 /* SearchController.h */,
 				40F0823D2A57BE00005EF033 /* SearchController.m */,
+				40358FD42A5E78B000526877 /* news */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		87400D38309FFE5A1EEB56CD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ED5BC84677DFAF3782C53CFD /* Pods-demo.debug.xcconfig */,
+				5C97F5A504CBDF7702089946 /* Pods-demo.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,6 +296,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40D197D72A47E80B00674955 /* Build configuration list for PBXNativeTarget "demo" */;
 			buildPhases = (
+				436A247E895851783991B150 /* [CP] Check Pods Manifest.lock */,
 				40D197A42A47E80800674955 /* Sources */,
 				40D197A52A47E80800674955 /* Frameworks */,
 				40D197A62A47E80800674955 /* Resources */,
@@ -339,6 +416,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		436A247E895851783991B150 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-demo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		40D197A42A47E80800674955 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -347,14 +449,21 @@
 				40A76E1A2A4ECCAD00969496 /* SectionView.m in Sources */,
 				40D197B32A47E80800674955 /* ViewController.m in Sources */,
 				40D197AD2A47E80800674955 /* AppDelegate.m in Sources */,
+				40358FEA2A5E7F2800526877 /* BottomView.m in Sources */,
 				40ED95F82A542CCE002A9CA9 /* TabBarController.m in Sources */,
 				40A76E172A4EC01400969496 /* PersonCell.m in Sources */,
+				40358FE72A5E7F0900526877 /* PicBodyView.m in Sources */,
 				40F0824A2A5813A8005EF033 /* MessageCell.m in Sources */,
+				40358FE12A5E7EC000526877 /* BodyView.m in Sources */,
+				40358FE42A5E7ED600526877 /* TextBodyView.m in Sources */,
+				40358FD72A5E793000526877 /* NewsTableViewController.m in Sources */,
+				40358FED2A5E800800526877 /* ANewView.m in Sources */,
 				40F082442A57FDBA005EF033 /* MsgTableViewController.m in Sources */,
 				40A76E102A4EA7EC00969496 /* Person.m in Sources */,
 				40A76E132A4EB1C400969496 /* Group.m in Sources */,
 				40D197BE2A47E80B00674955 /* main.m in Sources */,
 				40F082412A57E0B0005EF033 /* SearchViewController.m in Sources */,
+				40358FDE2A5E7E3100526877 /* TopView.m in Sources */,
 				40F082472A5810FF005EF033 /* AMessage.m in Sources */,
 				405913FC2A4AE4990073C036 /* TableViewController.m in Sources */,
 				40F0823E2A57BE00005EF033 /* SearchController.m in Sources */,
@@ -517,6 +626,7 @@
 		};
 		40D197D82A47E80B00674955 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED5BC84677DFAF3782C53CFD /* Pods-demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -526,7 +636,7 @@
 				INFOPLIST_FILE = demo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -543,6 +653,7 @@
 		};
 		40D197D92A47E80B00674955 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C97F5A504CBDF7702089946 /* Pods-demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -552,7 +663,6 @@
 				INFOPLIST_FILE = demo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

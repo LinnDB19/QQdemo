@@ -8,6 +8,7 @@
 #import "TabBarController.h"
 #import "TableViewController.h"
 #import "MsgTableViewController.h"
+#import "NewsTableViewController.h"
 
 @interface TabBarController ()
 
@@ -39,9 +40,9 @@
     [self addChildViewController:_contNVC]; //加入tab
 
     //动态页
-    UIViewController *newsVC = [UIViewController new];
+    NewsTableViewController *newsVC = [[NewsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     newsVC.title = @"动态";
-    newsVC.view.backgroundColor = [UIColor grayColor];
+    //newsVC.view.backgroundColor = [UIColor grayColor];
     _newsNVC = [UINavigationController new];
     _newsNVC.tabBarItem.title = @"动态";
     _newsNVC.tabBarItem.image = [UIImage imageNamed:@"star"];

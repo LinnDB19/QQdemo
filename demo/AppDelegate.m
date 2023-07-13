@@ -25,8 +25,8 @@
 //    searchC.view.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height);
 //    searchC.view.backgroundColor = [UIColor whiteColor];
 //    searchC.navigationItem.hidesSearchBarWhenScrolling = NO;
-//    self.window.rootViewController = searchC;
-//    [self.window makeKeyAndVisible];
+    //self.window.rootViewController = searchC;
+    [self.window makeKeyAndVisible];
      
     return YES;
 }
