@@ -31,7 +31,7 @@
         
         UIEdgeInsets padding = UIEdgeInsetsMake(0, 10, 0, -10);
         [self.topView mas_makeConstraints:^(MASConstraintMaker *make){
-            make.top.equalTo(self.mas_top);
+            make.top.equalTo(self);
             make.left.equalTo(self.mas_left).offset(padding.left);
             make.right.equalTo(self.mas_right).offset(padding.right);
             make.height.mas_equalTo(50);
@@ -42,11 +42,11 @@
             make.right.equalTo(self.mas_right).offset(padding.right);
         }];
         [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make){
-            make.top.equalTo(self.bodyView.mas_bottom);
+            make.top.equalTo(self.bodyView.mas_bottom).offset(10);
             make.bottom.equalTo(self.mas_bottom);
             make.left.equalTo(self.mas_left).offset(padding.left);
             make.right.equalTo(self.mas_right).offset(padding.right);
-            make.height.mas_equalTo(20);
+            make.height.mas_equalTo(10);
             
         }];
         

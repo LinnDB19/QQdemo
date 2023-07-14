@@ -15,12 +15,11 @@
     self = [super init];
     if(self)
     {
+        //self.backgroundColor = [UIColor blueColor];
         _textBodyView = [TextBodyView new];
         [self addSubview:_textBodyView];
         [_textBodyView mas_makeConstraints:^(MASConstraintMaker *make){
-            make.top.equalTo(self.mas_top);
-            make.left.equalTo(self.mas_left);
-            make.right.equalTo(self.mas_right);
+            make.edges.equalTo(self);
         }];
     }
     
@@ -30,6 +29,12 @@
 - (void) setPicBodyImageCount:(int)count
 {
     if(!count) return;
+    
+    [_textBodyView mas_remakeConstraints:^(MASConstraintMaker *make){
+        make.top.equalTo(self.mas_top);
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+    }];
     
     _picBodyView = [PicBodyView new];
     [self addSubview:_picBodyView];

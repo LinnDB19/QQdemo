@@ -7,6 +7,7 @@
 
 #import "NewsTableViewController.h"
 #import "ANewView.h"
+#import "ANew.h"
 #import "Masonry.h"
 
 @interface NewsTableViewController ()
@@ -22,6 +23,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    [self initData];
     
     
     //刷新功能
@@ -38,6 +40,22 @@
     self.tableView.estimatedRowHeight = 50; // cell预估高度
 }
 
+- (void) initData
+{
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"someNews" ofType:@"plist"];
+    NSMutableArray *news = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+   
+    self.news = [NSMutableArray new];
+    
+    for(NSDictionary *newDic in news)
+    {
+        ANew *theNew = [[ANew alloc] init];
+        [theNew setValuesForKeysWithDictionary:newDic];
+        [self.news addObject:theNew];
+    }
+}
+
+
 -(void)StartRefresh
 {
     NSLog(@"刷新开始");
@@ -53,7 +71,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return self.news.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -65,13 +83,13 @@
 {
     ANewView *aNewView = [ANewView new];
     
-    aNewView.topView.nickNameLabel.text = @"隐居于月球";
-    aNewView.topView.dateLabel.text = @"13:30";
-    aNewView.topView.iconImageView.image = [UIImage imageNamed:@"icon6"];
-    aNewView.bodyView.textBodyView.contentLabel.text = @"我们过了江，进了车站。我买票，他忙着照看行李。行李太多了，得向脚夫行些小费才可过去。他便又忙着和他们讲价钱。我那时真是聪明过分，总觉他说话不大漂亮，非自己插嘴不可，但他终于讲定了价钱；就送我上车。他给我拣定了靠车门的一张椅子；我将他给我做的紫毛大衣铺好座位。他嘱我路上小心，夜里要警醒些，不要受凉。又嘱托茶房好好照应我。我心里暗笑他的迂；他们只认得钱，托他们只是白托！而且我这样大年纪的人，难道还不能料理自己么？我现在想想，我那时真是太聪明了。";
-    [aNewView.bodyView setPicBodyImageCount:2]; // 要先调用此函数以设置内部的图片视窗布局
-    ((UIImageView *)aNewView.bodyView.picBodyView.imageViews[0]).image = [UIImage imageNamed:@"icon1"];
-    ((UIImageView *)aNewView.bodyView.picBodyView.imageViews[1]).image = [UIImage imageNamed:@"icon2"];
+//    aNewView.topView.nickNameLabel.text = @"隐居于月球";
+//    aNewView.topView.dateLabel.text = @"13:30";
+//    aNewView.topView.iconImageView.image = [UIImage imageNamed:@"icon6"];
+//    aNewView.bodyView.textBodyView.contentLabel.text = @"我们过了江，进了车站。我买票，他忙着照看行李。行李太多了，得向脚夫行些小费才可过去。他便又忙着和他们讲价钱。我那时真是聪明过分，总觉他说话不大漂亮，非自己插嘴不可，但他终于讲定了价钱；就送我上车。他给我拣定了靠车门的一张椅子；我将他给我做的紫毛大衣铺好座位。他嘱我路上小心，夜里要警醒些，不要受凉。又嘱托茶房好好照应我。我心里暗笑他的迂；他们只认得钱，托他们只是白托！而且我这样大年纪的人，难道还不能料理自己么？我现在想想，我那时真是太聪明了。";
+//    [aNewView.bodyView setPicBodyImageCount:9]; // 要先调用此函数以设置内部的图片视窗布局
+//    ((UIImageView *)aNewView.bodyView.picBodyView.imageViews[0]).image = [UIImage imageNamed:@"icon1"];
+//    ((UIImageView *)aNewView.bodyView.picBodyView.imageViews[1]).image = [UIImage imageNamed:@"icon2"];
 //    ((UIImageView *)aNewView.bodyView.picBodyView.imageViews[2]).image = [UIImage imageNamed:@"icon3"];
 //    ((UIImageView *)aNewView.bodyView.picBodyView.imageViews[3]).image = [UIImage imageNamed:@"icon4"];
 //    ((UIImageView *)aNewView.bodyView.picBodyView.imageViews[4]).image = [UIImage imageNamed:@"icon5"];
@@ -79,26 +97,49 @@
 //    ((UIImageView *)aNewView.bodyView.picBodyView.imageViews[6]).image = [UIImage imageNamed:@"icon7"];
 //    ((UIImageView *)aNewView.bodyView.picBodyView.imageViews[7]).image = [UIImage imageNamed:@"icon8"];
 //    ((UIImageView *)aNewView.bodyView.picBodyView.imageViews[8]).image = [UIImage imageNamed:@"icon9"];
+    
+    [self setANewView:aNewView WithANew:self.news[section]];
+    
     return aNewView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 25;
+    return 10;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    //用来放评论输入栏
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, 500, 30)];
-    textField.text = @"评论";
-    return textField;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    //用来放评论输入栏
+//    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, 500, 30)];
+//    textField.text = @"评论";
+//    return textField;
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID" forIndexPath:indexPath];
     
     return cell;
+}
+
+- (void) setANewView:(ANewView *)aNewView WithANew:(ANew *)aNew
+{
+    aNewView.topView.iconImageView.image = [UIImage imageNamed:aNew.iconName];
+    aNewView.topView.nickNameLabel.text = aNew.nickName;
+    
+    NSDateFormatter *dateForma = [NSDateFormatter new];
+    [dateForma setDateFormat:@"HH:mm"];
+    aNewView.topView.dateLabel.text = [NSString stringWithFormat:@"%@", [dateForma stringFromDate:aNew.date]];
+    
+    aNewView.bodyView.textBodyView.contentLabel.text = aNew.contentText;
+    
+    [aNewView.bodyView setPicBodyImageCount:[aNew.photoNames count]];
+    for(int i = 0; i < [aNew.photoNames count]; i ++)
+    {
+        UIImageView *imageView = aNewView.bodyView.picBodyView.imageViews[i];
+        imageView.image = [UIImage imageNamed:aNew.photoNames[i]];
+        //imageView.contentMode = UIViewContentModeScaleAspectFill;
+    }
 }
 
 @end

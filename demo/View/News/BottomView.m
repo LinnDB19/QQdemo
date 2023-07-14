@@ -21,6 +21,7 @@
     self = [super init];
     if(self)
     {
+        //self.backgroundColor = [UIColor greenColor];
         self.likeBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         //[self.likeBtn setTitle:@"点赞" forState:UIControlStateNormal];
         [self.likeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

@@ -15,7 +15,7 @@
     for(int i = 0; i < count; i ++)
     {
         UIImageView *imageView = [UIImageView new];
-        imageView.backgroundColor = [UIColor brownColor];
+        //imageView.backgroundColor = [UIColor brownColor];
         [self.imageViews addObject:imageView];
         [self addSubview:imageView];
     }
@@ -26,7 +26,9 @@
     {
         UIImageView *imageView = self.imageViews[0];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make){
-            make.edges.equalTo(self);
+            make.top.left.equalTo(self);
+            make.width.mas_equalTo(self.mas_width);
+            make.height.equalTo(imageView.mas_width);
         }];
     }
     else if(count == 2)
@@ -76,10 +78,11 @@
                     make.left.equalTo(last.mas_right).offset(padding);
                 }];
             }
-            
+            int width = [UIScreen mainScreen].bounds.size.width - 20;
             [now mas_makeConstraints:^(MASConstraintMaker *make){
-                make.width.equalTo(self.mas_width).offset(- 2 * padding).dividedBy(3);
-                //make.width.equalTo(self.mas_width).offset(- 1 * padding).dividedBy(3);
+                //用下面这个会导致右边有多余的空白，亟待解决
+                //make.width.equalTo(self.mas_width).offset(- 2 * padding).dividedBy(3);
+                make.width.mas_equalTo((width - 2 * padding) / 3);
                 make.height.equalTo(now.mas_width);
             }];
             

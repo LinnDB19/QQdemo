@@ -6,7 +6,7 @@
 //
 
 #import "TextBodyView.h"
-#import "Masonry.h";
+#import "Masonry.h"
 
 @implementation TextBodyView
 
@@ -22,7 +22,7 @@
         [self addSubview:_contentLabel];
         
         [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make){
-            make.size.equalTo(self);
+            make.edges.equalTo(self);
         }];
     }
     

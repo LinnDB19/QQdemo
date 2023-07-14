@@ -36,6 +36,8 @@
 		40F082442A57FDBA005EF033 /* MsgTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F082432A57FDBA005EF033 /* MsgTableViewController.m */; };
 		40F082472A5810FF005EF033 /* AMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F082462A5810FF005EF033 /* AMessage.m */; };
 		40F0824A2A5813A8005EF033 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F082492A5813A8005EF033 /* MessageCell.m */; };
+		40F6C81E2A60F03400AEB9B7 /* someNews.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40F6C81D2A60F03400AEB9B7 /* someNews.plist */; };
+		40F6C8212A60F0C200AEB9B7 /* ANew.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F6C8202A60F0C200AEB9B7 /* ANew.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +110,9 @@
 		40F082462A5810FF005EF033 /* AMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMessage.m; sourceTree = "<group>"; };
 		40F082482A5813A8005EF033 /* MessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		40F082492A5813A8005EF033 /* MessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		40F6C81D2A60F03400AEB9B7 /* someNews.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = someNews.plist; sourceTree = "<group>"; };
+		40F6C81F2A60F0C200AEB9B7 /* ANew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ANew.h; sourceTree = "<group>"; };
+		40F6C8202A60F0C200AEB9B7 /* ANew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ANew.m; sourceTree = "<group>"; };
 		5C97F5A504CBDF7702089946 /* Pods-demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demo.release.xcconfig"; path = "Target Support Files/Pods-demo/Pods-demo.release.xcconfig"; sourceTree = "<group>"; };
 		C18A67B570ABF711D0A042C0 /* libPods-demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED5BC84677DFAF3782C53CFD /* Pods-demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demo.debug.xcconfig"; path = "Target Support Files/Pods-demo/Pods-demo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -184,6 +189,8 @@
 				40A76E122A4EB1C400969496 /* Group.m */,
 				40F082452A5810FF005EF033 /* AMessage.h */,
 				40F082462A5810FF005EF033 /* AMessage.m */,
+				40F6C81F2A60F0C200AEB9B7 /* ANew.h */,
+				40F6C8202A60F0C200AEB9B7 /* ANew.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -236,6 +243,7 @@
 				40D197BC2A47E80B00674955 /* Info.plist */,
 				404A984E2A52B75E0021556B /* friends.plist */,
 				4010473C2A5B9F7C00C867C4 /* messages.plist */,
+				40F6C81D2A60F03400AEB9B7 /* someNews.plist */,
 				40D197B92A47E80B00674955 /* LaunchScreen.storyboard */,
 				40D197BD2A47E80B00674955 /* main.m */,
 			);
@@ -285,7 +293,6 @@
 				ED5BC84677DFAF3782C53CFD /* Pods-demo.debug.xcconfig */,
 				5C97F5A504CBDF7702089946 /* Pods-demo.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -393,6 +400,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40F6C81E2A60F03400AEB9B7 /* someNews.plist in Resources */,
 				4010473D2A5B9F7C00C867C4 /* messages.plist in Resources */,
 				40D197BB2A47E80B00674955 /* LaunchScreen.storyboard in Resources */,
 				40D197B82A47E80B00674955 /* Assets.xcassets in Resources */,
@@ -448,6 +456,7 @@
 			files = (
 				40A76E1A2A4ECCAD00969496 /* SectionView.m in Sources */,
 				40D197B32A47E80800674955 /* ViewController.m in Sources */,
+				40F6C8212A60F0C200AEB9B7 /* ANew.m in Sources */,
 				40D197AD2A47E80800674955 /* AppDelegate.m in Sources */,
 				40358FEA2A5E7F2800526877 /* BottomView.m in Sources */,
 				40ED95F82A542CCE002A9CA9 /* TabBarController.m in Sources */,

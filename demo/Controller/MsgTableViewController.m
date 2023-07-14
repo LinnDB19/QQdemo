@@ -364,6 +364,4 @@ static const double SECTION_HEIGHT = 40, CELL_HEIGHT = 50;
     [self.tableView reloadData];
 }
 
-
-
 @end
