@@ -471,4 +471,10 @@ static const double SECTION_HEIGHT = 40, CELL_HEIGHT = 50;
     self.somethingEditing = NO;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSLog(@"好友列表页即将出现");
+}
+
 @end

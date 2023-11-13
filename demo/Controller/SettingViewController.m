@@ -19,7 +19,6 @@
 
 -(void)viewDidLoad
 {
-    self.edgesForExtendedLayout = UIRectEdgeNone; // self.view.frame不考虑状态栏区域
     self.navigationController.navigationBar.translucent = NO; // 不透明
     self.hidesBottomBarWhenPushed = YES;
     [self initData];
@@ -86,9 +85,16 @@
     [[JHUserDefaultStatus sharedManager] clearUserInfo];
 }
 
--(void)dealloc
+- (void)viewWillAppear:(BOOL)animated
 {
-    self.edgesForExtendedLayout = UIRectEdgeAll; // 恢复默认
+    [super viewWillAppear:animated];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.edgesForExtendedLayout = UIRectEdgeAll;
 }
 
 @end

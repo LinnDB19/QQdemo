@@ -12,7 +12,8 @@
 #import "CommentView.h"
 #import "WMZDialog.h"
 #import "ImageZoom.h"
-
+#import "Macro.h"
+#import "AFNetworking.h"
 @interface NewsTableViewController ()
 
 @property(strong, nonatomic) NSMutableArray<ANew *> *news; // 存储的说说列表，每一个元素都是一条说说
@@ -79,12 +80,42 @@
 
 -(void)StartRefresh
 {
-    NSLog(@"刷新开始");
+    //NSLog(@"刷新开始");
     [self performSelector:@selector(endRefresh) withObject:nil afterDelay:3];
+    
+    NSString *path = @"http://127.0.0.1:4523/m1/3553268-0-default/user/news";
+    NSDictionary *params = nil;
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    [manager setRequestSerializer:[AFJSONRequestSerializer serializer]];
+    [manager setResponseSerializer:[AFJSONResponseSerializer serializer]];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", nil];
+    //发请求
+    [manager GET:path parameters:params headers:nil progress:nil success:^(NSURLSessionDataTask *task, id _Nullable responseObject){
+//        responseObject 就是服务器返回的data数据，已经是字典
+        NSArray<NSDictionary *> *arr = responseObject[@"data"];
+        NSMutableArray<ANew *> *someNews = [NSMutableArray new];
+        for(int i = 0; i < arr.count; i ++)
+        {
+            ANew *theNew = [ANew new];
+            [theNew setValuesForKeysWithDictionary:arr[i]];
+            theNew.date = [[NSDateFormatter new]dateFromString:arr[i][@"date"]];
+            [someNews addObject:theNew];
+        }
+        
+        WEAKSELF(weakSelf)
+        weakSelf.news = someNews;
+        [weakSelf endRefresh];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        //NSLog(@"请求失败:%@",error);
+        WEAKSELF(weakSelf)
+        [weakSelf endRefresh];
+    }];
 }
 -(void)endRefresh
 {
-    NSLog(@"刷新结束");
+    //NSLog(@"刷新结束");
+    [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }
 
@@ -168,7 +199,7 @@
 #pragma mark 底部的按钮代理
 -(void)didClickCommentBtnWithTag:(int)tag
 {
-    NSLog(@"commentBtn was clicked in newsVC from %d", tag);
+    //NSLog(@"commentBtn was clicked in newsVC from %d", tag);
     self.sectionTag = tag;
     self.is_commentBtn = YES;
     [[[UIApplication sharedApplication] keyWindow] bringSubviewToFront:self.commentView];
@@ -176,7 +207,7 @@
 }
 -(void)didClickTransBtnWithTag:(int)tag
 {
-    NSLog(@"transBtn was clicked in newsvC from %d", tag);
+    //NSLog(@"transBtn was clicked in newsvC from %d", tag);
     self.sectionTag = tag;
     self.is_commentBtn = NO;
     //转发框和评论框目前作用一致，先用评论输入框代替
@@ -203,7 +234,7 @@
     CGRect footerFrameInTV = [self.tableView rectForFooterInSection:self.sectionTag];
     CGRect footerFrame = [self.tableView convertRect:footerFrameInTV toView:nil]; // 转换出来的坐标相当于屏幕坐标
     CGFloat yOffset = footerFrame.origin.y - rect.origin.y;
-    NSLog(@"yoffset = %lf", yOffset);
+    //NSLog(@"yoffset = %lf", yOffset);
     if(yOffset > 0)
         [self.tableView setContentOffset:CGPointMake(0, self.lastYoffset + yOffset) animated:YES];
 }
@@ -301,7 +332,7 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    NSLog(@"offset x = %lf, y = %lf", self.tableView.contentOffset.x, self.tableView.contentOffset.y);
+    //NSLog(@"offset x = %lf, y = %lf", self.tableView.contentOffset.x, self.tableView.contentOffset.y);
     self.somethingEditing = NO;
 }
 

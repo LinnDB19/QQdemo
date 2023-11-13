@@ -1,17 +1,19 @@
-[
-    {
-        "iconName":"icon2",
-        "nickName":"ttt",
-        "contentText":"aaa"
-    },
-    {
-        "iconName":"icon2",
-        "nickName":"ttt",
-        "contentText":"bbb"
-    },
-    {
-        "iconName":"icon2",
-        "nickName":"ttt",
-        "contentText":"cc1c"
-    }
-]
+{
+    "data":[
+        {
+            "iconName":"icon2",
+            "nickName":"ttt",
+            "contentText":"aaa"
+        },
+        {
+            "iconName":"icon2",
+            "nickName":"ttt",
+            "contentText":"bbb"
+        },
+        {
+            "iconName":"icon2",
+            "nickName":"ttt",
+            "contentText":"cc1c"
+        }
+    ]
+}

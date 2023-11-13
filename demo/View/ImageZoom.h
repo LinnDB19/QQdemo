@@ -13,7 +13,7 @@
 
 @interface ImageZoom : NSObject
 
-+(void)showImage:(UIImage *)contentImage;
-
+//+(void)showImage:(UIImage *)contentImage;
++(void)showImages:(NSArray<UIImage *> *)contentImages at:(NSUInteger)index;
 @end
 #endif /* ImageZoom_h */

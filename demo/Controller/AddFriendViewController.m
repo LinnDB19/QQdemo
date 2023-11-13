@@ -19,7 +19,6 @@
 
 -(void)viewDidLoad
 {
-    self.edgesForExtendedLayout = UIRectEdgeNone; // self.view.frame不考虑状态栏区域
     self.self.navigationController.navigationBar.translucent = NO; // 不透明
     //self.view.frame = UIScreen.mainScreen.bounds;
     self.view.backgroundColor = [UIColor whiteColor];
@@ -92,9 +91,16 @@
 {
     return 50;
 }
-- (void)dealloc
+- (void)viewWillAppear:(BOOL)animated
 {
-    self.edgesForExtendedLayout = UIRectEdgeAll; // 销毁时恢复默认，避免对其它的VC造成影响
+    [super viewWillAppear:animated];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.edgesForExtendedLayout = UIRectEdgeAll;
 }
 
 @end

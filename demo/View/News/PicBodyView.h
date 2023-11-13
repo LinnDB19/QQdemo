@@ -11,7 +11,7 @@
 
 @interface PicBodyView : UIView
 
-@property(strong, nonatomic) NSMutableArray *imageViews; // 用来存放imageView的数组，不固定
+@property(strong, nonatomic) NSMutableArray<UIImageView *> *imageViews; // 用来存放imageView的数组，不固定
 
 - (void) setImageCount:(int)count;
 

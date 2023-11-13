@@ -12,8 +12,11 @@
 
 +(void)showImageAndAddHideTap:(UIImage *)image;
 +(void)hideImage:(UITapGestureRecognizer *)tap;
-
 @end
+
+static NSArray<UIImage *> *imgs;
+static NSUInteger idx;
+static UIImageView *imageView;
 
 @implementation ImageZoom
 
@@ -22,17 +25,20 @@
     [self showImageAndAddHideTap:contentImage];
 }
 
-+(void)showImageAndAddHideTap:(UIImage *)image
++(void)showImages:(NSArray<UIImage *> *)contentImages at:(NSUInteger)index
 {
     CGSize size = [UIScreen mainScreen].bounds.size;
     UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     [backgroundView setBackgroundColor:[UIColor blackColor]];
     //动画放大所展示的ImageView
+    imgs = contentImages;
+    idx = index;
+    UIImage *image = contentImages[index];
     [UIView animateWithDuration:0.4 animations:^{
         CGFloat y,width,height;
         width = size.width;  //宽度为屏幕宽度
         height = image.size.height * size.width / image.size.width; // 高度根据比例计算
-        UIImageView *imageView = [UIImageView new];
+        imageView = [UIImageView new];
         imageView.image = image;
         //设置frame才会有动画，初始化直接设置就没有动画
         [imageView setFrame:CGRectMake(0, (size.height - height) * 0.5, width, height)];
@@ -46,6 +52,34 @@
     UITapGestureRecognizer *tap =
         [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideImage:)];
     [backgroundView addGestureRecognizer:tap];
+    
+    UIPanGestureRecognizer *pan =
+    [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(slideImg:)];
+    [backgroundView addGestureRecognizer:pan];
+}
+
++(void)slideImg:(UIPanGestureRecognizer *)pan
+{
+    NSLog(@"图片浏览器的滑动事件触发");
+    if([imgs isEqual:nil]) return;
+    UIView *backgroundView = pan.view;
+    CGPoint translation = [pan translationInView:backgroundView];
+    if(translation.x < 0)
+    {
+        if(idx > 0)
+        {
+            idx --;
+            [UIView transitionWithView:backgroundView duration:1 options:UIViewAnimationOptionCurveEaseIn animations:^{[imageView setImage:imgs[idx]];} completion:nil];
+        }
+    }
+    else
+    {
+        if(idx + 1 < imgs.count)
+        {
+            idx ++;
+            [UIView animateWithDuration:0.5 animations:^{[imageView setImage:imgs[idx]];}completion:nil];
+        }
+    }
 }
 
 +(void)hideImage:(UITapGestureRecognizer *)tap{

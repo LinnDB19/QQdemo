@@ -37,11 +37,11 @@
     NSIndexPath *index = [self.tableView indexPathForRowAtPoint:location];
     if(index)
     {
-        NSLog(@"点在cell上，tableview响应");
+        //NSLog(@"点在cell上，tableview响应");
     }
     else
     {
-        NSLog(@"点不在cell上，tableView不响应");
+        //NSLog(@"点不在cell上，tableView不响应");
     }
     return translation.x < 0 || (index && self.tableView.isEditing);
 }

@@ -44,7 +44,7 @@
     for(UIView *view in [self.pageVC.view subviews])
         if([view isKindOfClass:[UIScrollView class]])
         {
-            NSLog(@"pagevc里找到了scrollview");
+            //NSLog(@"pagevc里找到了scrollview");
             self.scrollView = (UIScrollView *)view;
             self.scrollView.delegate = self;
             self.scrollView.canCancelContentTouches = YES;
@@ -85,14 +85,14 @@
 {
     UIViewController *topVC = [((UINavigationController *)[self.tabBarC selectedViewController]) topViewController];
     UIViewController *topVCLeft = [((UINavigationController *)self.contentVC[0]) topViewController];//左边的navi的当前VC
-    NSLog(@"topVC %@", topVC.description);
-    NSLog(@"topVCLeft %@", topVCLeft.description);
+    //NSLog(@"topVC %@", topVC.description);
+    //NSLog(@"topVCLeft %@", topVCLeft.description);
     if(!([topVC isEqual:self.tabBarC.msgTVC] || [topVC isEqual:self.tabBarC.contTVC] || [topVC isEqual:self.tabBarC.newsVC]) || ![topVCLeft isEqual:self.slideVC])
     {
         //两个page页有其中一个不是主页面时没法切换
         self.scrollView.scrollEnabled = NO;
         self.scrollView.scrollEnabled = YES;
-        NSLog(@"不在首页，PageViewController不能滑动");
+        //NSLog(@"不在首页，PageViewController不能滑动");
         return;
     }
     TableViewController *tableVC = (TableViewController *)topVC;
@@ -100,14 +100,14 @@
     {
         self.scrollView.scrollEnabled = NO;
         self.scrollView.scrollEnabled = YES;
-        NSLog(@"好友列表编辑中");
+        //NSLog(@"好友列表编辑中");
     }
-    else NSLog(@"未在编辑中");
+    else ;//NSLog(@"未在编辑中");
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers
 {
-    NSLog(@"pageVC即将转向 %@", pendingViewControllers.description);
+    //NSLog(@"pageVC即将转向 %@", pendingViewControllers.description);
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

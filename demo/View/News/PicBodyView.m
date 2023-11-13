@@ -101,7 +101,11 @@
 
 -(void)imageViewTap:(UIGestureRecognizer *)tap
 {
-    [ImageZoom showImage:((UIImageView *)tap.view).image];
+    NSMutableArray *arr = [NSMutableArray new];
+    NSUInteger idx = [self.imageViews indexOfObject:(UIImageView *)tap.view];
+    for(int i = 0; i < self.imageViews.count; i ++)
+        [arr addObject:self.imageViews[i].image];
+    [ImageZoom showImages:arr at:idx];
 }
 
 - (NSMutableArray *)imageViews

@@ -48,7 +48,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.view.frame = UIScreen.mainScreen.bounds;
     self.topView = [UIView new];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 0, 50, 50)];
     imgView.image = [UIImage imageNamed:@"paidaxing"];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(80, 10, 70, 20)];
@@ -175,8 +174,15 @@
     [self.navigationController pushViewController:settingVC animated:YES];
 }
 
--(void)dealloc
+- (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
     self.edgesForExtendedLayout = UIRectEdgeAll;
 }
 
