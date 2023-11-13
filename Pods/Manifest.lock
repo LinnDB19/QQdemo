@@ -1,16 +1,42 @@
 PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - IQKeyboardManager (6.5.12)
   - Masonry (0.6.4)
+  - WMZDialog (1.5.0)
 
 DEPENDENCIES:
+  - AFNetworking
+  - IQKeyboardManager
   - Masonry (~> 0.6.2)
+  - WMZDialog
 
 SPEC REPOS:
   trunk:
+    - AFNetworking
+    - IQKeyboardManager
     - Masonry
+    - WMZDialog
 
 SPEC CHECKSUMS:
+  AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
+  IQKeyboardManager: b1fd66ccf7a79095bdcc4a2735231586f744216e
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  WMZDialog: 724777637ca12b1d8078644b9f10aa264dec3a96
 
-PODFILE CHECKSUM: 1e0ac6329e30600e5b5fb503ad7cd0b4dd19a9ed
+PODFILE CHECKSUM: b42f8adede086d50c4b95f8796a10bae76849476
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.11.3

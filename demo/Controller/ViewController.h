@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
+@property(strong, nonatomic) UIScrollView *scrollView;
 @end
 

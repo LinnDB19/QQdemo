@@ -31,9 +31,10 @@
         //[self.commentBtn setTitle:@"评论" forState:UIControlStateNormal];
         [self.commentBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.commentBtn setImage:[UIImage imageNamed:@"comment"] forState:UIControlStateNormal];
+        [self.commentBtn addTarget:self action:@selector(clickCommentBtn) forControlEvents:UIControlEventTouchUpInside];
         
         self.transmitBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-        //[self.transmitBtn setTitle:@"转发" forState:UIControlStateNormal];
+        [self.transmitBtn addTarget:self action:@selector(clickTransBtn) forControlEvents:UIControlEventTouchUpInside];
         [self.transmitBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.transmitBtn setImage:[UIImage imageNamed:@"transmit"] forState:UIControlStateNormal];
         
@@ -43,11 +44,11 @@
         
         int padding = 20;
         [self.transmitBtn mas_makeConstraints:^(MASConstraintMaker *make){
-            make.top.equalTo(self.mas_top).offset(5);
+            make.top.equalTo(self.mas_top).offset(0);
             make.right.equalTo(self.mas_right);
         }];
         [self.commentBtn mas_makeConstraints:^(MASConstraintMaker *make){
-            make.top.equalTo(self.mas_top).offset(7);
+            make.top.equalTo(self.mas_top).offset(0);
             make.right.equalTo(self.transmitBtn.mas_left).offset(- padding);
         }];
         [self.likeBtn mas_makeConstraints:^(MASConstraintMaker *make){
@@ -67,6 +68,16 @@
     
     
     [self.likeBtn setImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
+}
+
+- (void)clickCommentBtn
+{
+    if(_commentDelegate != nil) [_commentDelegate didClickCommentBtnWithTag:0];
+}
+
+- (void)clickTransBtn
+{
+    if(_transDelegate) [_transDelegate didClickTransBtnWithTag:0];
 }
 
 

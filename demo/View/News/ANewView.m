@@ -28,7 +28,8 @@
         self.topView.mas_key = @"topView";
         self.bodyView.mas_key = @"bodyView";
         self.bottomView.mas_key = @"bottomView";
-        
+        self.bottomView.commentDelegate = self;
+        self.bottomView.transDelegate = self;
         UIEdgeInsets padding = UIEdgeInsetsMake(0, 10, 0, -10);
         [self.topView mas_makeConstraints:^(MASConstraintMaker *make){
             make.top.equalTo(self);
@@ -46,7 +47,7 @@
             make.bottom.equalTo(self.mas_bottom);
             make.left.equalTo(self.mas_left).offset(padding.left);
             make.right.equalTo(self.mas_right).offset(padding.right);
-            make.height.mas_equalTo(10);
+            make.height.mas_equalTo(30);
             
         }];
         
@@ -57,6 +58,15 @@
     }
     
     return self;
+}
+-(void)didClickCommentBtnWithTag:(int)tag
+{
+    if(_commentDelegate != nil) [_commentDelegate didClickCommentBtnWithTag:self.tag];
+}
+
+-(void)didClickTransBtnWithTag:(int)tag
+{
+    if(_transDelegate) [_transDelegate didClickTransBtnWithTag:self.tag];
 }
 
 /*

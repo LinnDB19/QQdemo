@@ -6,6 +6,7 @@
 //
 
 #import "PicBodyView.h"
+#import "ImageZoom.h"
 
 @implementation PicBodyView
 
@@ -15,7 +16,9 @@
     for(int i = 0; i < count; i ++)
     {
         UIImageView *imageView = [UIImageView new];
-        //imageView.backgroundColor = [UIColor brownColor];
+        UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewTap:)];
+        [imageView addGestureRecognizer:tap];
+        [imageView setUserInteractionEnabled:YES];
         [self.imageViews addObject:imageView];
         [self addSubview:imageView];
     }
@@ -94,6 +97,11 @@
             UIImageView *last = [self.imageViews lastObject];
             make.bottom.equalTo(last.mas_bottom);
     }]; // 让self能够随子视图自动拉伸
+}
+
+-(void)imageViewTap:(UIGestureRecognizer *)tap
+{
+    [ImageZoom showImage:((UIImageView *)tap.view).image];
 }
 
 - (NSMutableArray *)imageViews

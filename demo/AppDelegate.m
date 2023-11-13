@@ -9,25 +9,38 @@
 #import "ViewController.h"
 #import "TableViewController.h"
 #import "TabBarController.h"
-@interface AppDelegate ()
+#import <IQKeyboardManager/IQKeyboardManager.h>
+#import "JHControllerManager.h"
+#import "JHUserDefaultStatus.h"
 
+@interface AppDelegate()
+@property(strong, nonatomic) UIScrollView *scrollView;
 @end
 
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+//    TabBarController *tabBarC = [[TabBarController alloc] init];
+//    ViewController *vc = [ViewController new];
+//    //MainPageVC *mainPageVC = [MainPageVC new];
+//
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[TabBarController alloc] init];
-//    UISearchController *searchC = [UISearchController new];
-//    searchC.view.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height);
-//    searchC.view.backgroundColor = [UIColor whiteColor];
-//    searchC.navigationItem.hidesSearchBarWhenScrolling = NO;
-    //self.window.rootViewController = searchC;
+//    self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
-     
+    
+    if([JHUserDefaultStatus isLogin])
+    {
+        [[JHControllerManager ShareManager]postNotification:ControllerManagerChangeToHomeNotification userInfo:nil];
+    }
+    else
+    {
+        [[JHControllerManager ShareManager]postNotification:ControllerManagerChangeToLaunchNotification userInfo:nil];
+    }
+    
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = true;
+
     return YES;
 }
 

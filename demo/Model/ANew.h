@@ -9,11 +9,11 @@
 
 @interface ANew : NSObject
 
-@property(strong, nonatomic) NSString *iconName;
-@property(strong, nonatomic) NSString *nickName;
-@property(strong, nonatomic) NSDate *date;
-@property(strong, nonatomic) NSString *contentText;
-@property(strong ,nonatomic) NSMutableArray *photoNames;
-
+@property(copy, nonatomic) NSString *iconName;
+@property(copy, nonatomic) NSString *nickName;
+@property(copy, nonatomic) NSDate *date;
+@property(copy, nonatomic) NSString *contentText;
+@property(strong, nonatomic) NSMutableArray *photoNames;
+@property(strong, nonatomic) NSMutableArray<NSString *> *commentList;
 @end
 

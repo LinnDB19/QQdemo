@@ -7,123 +7,112 @@
 
 #import "ViewController.h"
 #import "TableViewController.h"
+#import "IQkeyboardManager.h"
+#import "ImageZoom.h"
+#import "TabBarController.h"
+#import "SlideViewController.h"
+#import "PageViewController.h"
+
 @interface ViewController ()
-@property(strong, nonatomic) UICollectionView *collectionView;
+@property(strong, nonatomic) NSArray<UIViewController *>* contentVC;
+@property(strong, nonatomic) UIPageViewController *pageVC;
+@property(strong, nonatomic) TabBarController *tabBarC;
+@property(strong, nonatomic) SlideViewController *slideVC;
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+-(void)viewDidLoad {
 
-    //self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.pageVC = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
+                navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                                                                options:nil];
     
-}
+    self.pageVC.delegate = self;
+    self.pageVC.dataSource = self;
+    self.tabBarC = [TabBarController new];
+    self.slideVC = [SlideViewController new];
+    UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:self.slideVC];
+    _contentVC = @[navi, self.tabBarC];
+    [self.pageVC setViewControllers:@[self.tabBarC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
 
-//NSURLSession
--(void)demo2{
-    //访问百度首页
     
-    //1. 创建一个网络请求
-    NSURL *url = [NSURL URLWithString:@"https://baidu.com"];
+    [self addChildViewController:self.pageVC];
+    [self.view addSubview:self.pageVC.view];
     
-    //2.创建请求对象
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    //3.获得会话对象
-    NSURLSession *session=[NSURLSession sharedSession];
-    
-    //4.根据会话对象创建一个Task(发送请求）
-    /*
-     第一个参数：请求对象
-     第二个参数：completionHandler回调（请求完成【成功|失败】的回调）
-     data：响应体信息（期望的数据）
-     response：响应头信息，主要是对服务器端的描述
-     error：错误信息，如果请求失败，则error有值
-     */
-    NSURLSessionDataTask *dataTask=[session dataTaskWithRequest:request
-                                              completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            //response ： 响应：服务器的响应
-            //data：二进制数据：服务器返回的数据。（就是我们想要的内容）
-            //error：链接错误的信息
-            NSLog(@"网络响应：response：%@",response);
-        
-            //根据返回的二进制数据，生成字符串！NSUTF8StringEncoding：编码方式
-            NSString *html = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-            
-            //在客户端直接打开一个网页！
-            //客户端服务器：UIWebView
-
-            //将浏览器加载到view上
-            dispatch_async(dispatch_get_main_queue(), ^{
-            
-            //实例化一个客户端浏览器
-            WKWebView *web = [[WKWebView alloc]initWithFrame:self.view.bounds];
-            
-            //加载html字符串：baseURL：基准的地址：相对路径/绝对路径
-            [web loadHTMLString:html baseURL:nil];
-            [self.view addSubview:web];
-            
-            });
-        
-            //        //在本地保存百度首页
-            //        [data writeToFile:@"/Users/Liu/Desktop/baidu.html" atomically:YES];
-        
+    for(UIView *view in [self.pageVC.view subviews])
+        if([view isKindOfClass:[UIScrollView class]])
+        {
+            NSLog(@"pagevc里找到了scrollview");
+            self.scrollView = (UIScrollView *)view;
+            self.scrollView.delegate = self;
+            self.scrollView.canCancelContentTouches = YES;
+            [self.scrollView.panGestureRecognizer requireGestureRecognizerToFail:self.tabBarC.contTVC.panGesture];
+            break;
         }
-    ];
-    
-    //5.执行任务
-    [dataTask resume];
 }
 
--(void)demo1{
-    //访问百度首页
+#pragma  mark dataSourceDelegate
+
+-(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
+{
+    NSUInteger i = [self.contentVC indexOfObject:viewController];
+    if(i == 0 || i == NSNotFound) return nil;
     
-    //1. 创建一个网络请求
-    NSURL *url = [NSURL URLWithString:@"https://baidu.com"];
+    return self.contentVC[i - 1];
+}
+
+-(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
+{
+    NSUInteger i = [self.contentVC indexOfObject:viewController];
+    if(i + 1 == self.contentVC.count || i == NSNotFound) return nil;
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    //2. 发送网络请求  网络请求是个耗时操作，在子线程发送
-    
-    //第一种发送网络请求的方式
-    
-    /*
-     * 利用 NSUrlConnection 发送一个异步的网络请求
-     *
-     * @param NSURLRequest 网络请求
-     *
-     * @return
-     */
-    //queue：操作队列，决定网络请求完成后的Block(completionHandler) 回调在那条线程执行
-    //[NSOperationQueue mainQueue] 主线程
-    //completionHandler ：block 回调：网络请求完成之后，就会自动调用这个 Block
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-        //response ： 响应：服务器的响应
-        //data：二进制数据：服务器返回的数据。（就是我们想要的内容）
-        //coonectionError：链接错误的信息
-        NSLog(@"网络响应：response：%@",response);
-        
-        //根据返回的二进制数据，生成字符串！NSUTF8StringEncoding：编码方式
-        NSString *html = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-        
-        //在客户端直接打开一个网页！
-        //客户端服务器：UIWebView
-        
-        //实例化一个客户端浏览器
-        UIWebView *web = [[UIWebView alloc]initWithFrame:self.view.bounds];
-        
-        //加载html字符串：baseURL：基准的地址：相对路径/绝对路径
-        [web loadHTMLString:html baseURL:nil];
-        
-        //将浏览器加载到view上
-        [self.view addSubview:web];
-        
-//        //在本地保存百度首页
-//        [data writeToFile:@"/Users/Liu/Desktop/baidu.html" atomically:YES];
-        
-        NSLog(@"网路链接错误 connectionError响应：response：%@",connectionError);
-    }];
+    return self.contentVC[i + 1];
+}
+
+#pragma mark pageViewControllerDelegate
+
+//- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed
+//{
+//    if(!completed) return;
+//    self.currentIndex = [self.contentVC indexOfObject:self.pageVC.viewControllers.firstObject];
+//}
+
+#pragma  mark scrollView Delegate
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    UIViewController *topVC = [((UINavigationController *)[self.tabBarC selectedViewController]) topViewController];
+    UIViewController *topVCLeft = [((UINavigationController *)self.contentVC[0]) topViewController];//左边的navi的当前VC
+    NSLog(@"topVC %@", topVC.description);
+    NSLog(@"topVCLeft %@", topVCLeft.description);
+    if(!([topVC isEqual:self.tabBarC.msgTVC] || [topVC isEqual:self.tabBarC.contTVC] || [topVC isEqual:self.tabBarC.newsVC]) || ![topVCLeft isEqual:self.slideVC])
+    {
+        //两个page页有其中一个不是主页面时没法切换
+        self.scrollView.scrollEnabled = NO;
+        self.scrollView.scrollEnabled = YES;
+        NSLog(@"不在首页，PageViewController不能滑动");
+        return;
+    }
+    TableViewController *tableVC = (TableViewController *)topVC;
+    if(self.slideVC.somethingEditing || self.slideVC.tableView.isEditing || tableVC.somethingEditing || tableVC.tableView.isEditing)
+    {
+        self.scrollView.scrollEnabled = NO;
+        self.scrollView.scrollEnabled = YES;
+        NSLog(@"好友列表编辑中");
+    }
+    else NSLog(@"未在编辑中");
+}
+
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers
+{
+    NSLog(@"pageVC即将转向 %@", pendingViewControllers.description);
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    self.scrollView.bounces = NO;
 }
 
 @end
