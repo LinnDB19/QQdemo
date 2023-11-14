@@ -86,6 +86,8 @@
     return cell;
 }
 
+
+
 #pragma mark tableView delegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -94,12 +96,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.self.navigationController.navigationBar.translucent = NO; // 不透明
     self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    self.self.navigationController.navigationBar.translucent = YES; // 透明
     self.edgesForExtendedLayout = UIRectEdgeAll;
 }
 

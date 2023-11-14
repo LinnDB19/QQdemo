@@ -11,7 +11,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface ImageZoom : NSObject
+@interface ImageZoom : NSObject<UICollectionViewDataSource>
 
 //+(void)showImage:(UIImage *)contentImage;
 +(void)showImages:(NSArray<UIImage *> *)contentImages at:(NSUInteger)index;

@@ -16,4 +16,3 @@
 - (void) setImageCount:(int)count;
 
 @end
-

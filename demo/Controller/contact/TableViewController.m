@@ -14,6 +14,7 @@
 #import "AddFriendViewController.h"
 #import "Macro.h"
 #import "CusViewController.h"
+#import "PersonInfoViewController.h"
 
 @interface TableViewController ()<UISearchControllerDelegate>
 
@@ -71,7 +72,12 @@ static const double SECTION_HEIGHT = 40, CELL_HEIGHT = 50;
     //顶部左端头像
     UIImageView *iconView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"paidaxing"]];
     iconView.contentMode = UIViewContentModeScaleAspectFit;
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:iconView];
+    iconView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(iconTouch)];
+    [iconView addGestureRecognizer:tap];
+    UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc]initWithCustomView:iconView];
+    leftBarItem.style = UIBarButtonItemStyleDone; // 默认是plain，不响应上面的view的触摸事件
+    self.navigationItem.leftBarButtonItem = leftBarItem;
     
     static const int GAP_Y = CELL_HEIGHT / 5, GAP_X = 10;
     //tableView顶部视图
@@ -118,6 +124,13 @@ static const double SECTION_HEIGHT = 40, CELL_HEIGHT = 50;
     self.searchC.searchBar.frame = CGRectMake(0, GAP_Y, UIScreen.mainScreen.bounds.size.width - GAP_X * 2, CELL_HEIGHT);
     [self.headerV addSubview:self.searchC.searchBar];
     
+}
+
+-(void)iconTouch
+{
+    PersonInfoViewController *personInfoVC = [PersonInfoViewController new];
+    personInfoVC.iconName = @"paidaxing";
+    [self.navigationController pushViewController:personInfoVC animated:YES];
 }
 
 #pragma mark head三个按钮的点击事件
@@ -469,12 +482,6 @@ static const double SECTION_HEIGHT = 40, CELL_HEIGHT = 50;
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     self.somethingEditing = NO;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    NSLog(@"好友列表页即将出现");
 }
 
 @end

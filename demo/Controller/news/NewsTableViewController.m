@@ -6,6 +6,7 @@
 //
 
 #import "NewsTableViewController.h"
+#import "PersonInfoViewController.h"
 #import "ANewView.h"
 #import "ANew.h"
 #import "Masonry.h"
@@ -18,7 +19,7 @@
 
 @property(strong, nonatomic) NSMutableArray<ANew *> *news; // 存储的说说列表，每一个元素都是一条说说
 @property(strong, nonatomic) CommentView * commentView;
-@property int sectionTag;
+@property (assign, nonatomic) NSUInteger sectionTag;
 // 用于维护上一次按钮点击时来自哪个section，当评论被发送时可以以此tag更新news[tag]的数据
 @property bool is_commentBtn; //用于判断出现的输入框是用于评论还是用于转发，如果是评论，值为YES
 @property(assign, nonatomic) CGFloat lastYoffset; // 维护上一次键盘弹出，tableView未修改的偏移量，以便键盘隐藏后恢复
@@ -42,11 +43,11 @@
     self.refreshControl = refresh;
     [refresh addTarget:self action:@selector(StartRefresh) forControlEvents:UIControlEventValueChanged];
     
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone; //隐藏单元格分割线
+    //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone; //隐藏单元格分割线
     self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension; // header自动高度
-    self.tableView.rowHeight = UITableViewAutomaticDimension; // cell自动高度
+    //self.tableView.rowHeight = UITableViewAutomaticDimension; // cell自动高度
     self.tableView.estimatedSectionHeaderHeight = 100; // header预估高度
-    self.tableView.estimatedRowHeight = 50; // cell预估高度
+    //self.tableView.estimatedRowHeight = UITableViewAutomaticDimension; // cell预估高度
     
     //增加监听，当键盘出现或改变时收出消息
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -119,6 +120,13 @@
     [self.refreshControl endRefreshing];
 }
 
+-(void)iconTap:(UITapGestureRecognizer *)tap
+{
+    NSUInteger tapSection = tap.view.tag;
+    PersonInfoViewController *personInfoVC = [PersonInfoViewController new];
+    personInfoVC.iconName = [self.news[tapSection].iconName copy];
+    [self.navigationController pushViewController:personInfoVC animated:YES];
+}
 
 #pragma mark - Table view data source
 
@@ -134,26 +142,24 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     ANewView *aNewView = [ANewView new];
-    
     [self setANewView:aNewView WithANew:self.news[section]];
     aNewView.tag = section; //方便后面确定是哪条说说新增评论
-    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(iconTap:)];
+    [aNewView addGestureRecognizer:tap];
     return aNewView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 1;
+    return 10;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UITableViewHeaderFooterView *footerView = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"footerID"];
     if(!footerView) footerView = [UITableViewHeaderFooterView new];
-    //footerView.contentView.backgroundColor = [UIColor greenColor];
     return footerView;
 }
-
 
 //将一条说说的数据和视图对应起来
 - (void) setANewView:(ANewView *)aNewView WithANew:(ANew *)aNew
@@ -179,25 +185,99 @@
 }
 
 #pragma mark 评论cell
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int section = indexPath.section, row = indexPath.row;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
-    if(!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cellID"];
+    if(!cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cellID"];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    }
     
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.textLabel.text = self.news[section].commentList[row];
+    cell.textLabel.numberOfLines = 0;
     
     return cell;
 }
 
+- (void)cellDeleteAt:(NSIndexPath *)indexPath
+{
+    NSUInteger section = indexPath.section, row = indexPath.row;
+    [self.news[section].commentList removeObjectAtIndex:row];
+    [self.tableView reloadData];
+}
 
+- (void)cellCopyAt:(NSIndexPath *)indexPath
+{
+    NSUInteger section = indexPath.section, row = indexPath.row;
+    
+    [[UIPasteboard generalPasteboard] setString:self.news[section].commentList[row]];
+    
+    WMZDialogParam *param = WMZDialogParam.new;
+    param.wType = DialogTypeAuto;
+    param.wMessage = @"复制成功";
+    param.wDisappelSecond = 0.8;
+    Dialog().wStartParam(param);
+}
+
+- (void)cellReplyAt:(NSIndexPath *)indexPath
+{
+    NSUInteger section = indexPath.section, row = indexPath.row;
+    self.commentView.textView.text = [NSString stringWithFormat: @"回复”%@“：", self.news[section].commentList[row]];
+    [self didClickCommentBtnWithTag:section];
+}
+
+- (void)cellPlusOneAt:(NSIndexPath *)indexPath
+{
+    NSUInteger section = indexPath.section, row = indexPath.row;
+    [self.news[section].commentList addObject:[self.news[section].commentList[row] copy]];
+    [self.tableView reloadData];
+}
+
+
+#pragma mark UITableView delegate
+
+- (UIContextMenuConfiguration *)tableView:(UITableView *)tableView contextMenuConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath point:(CGPoint)point
+{
+    UIContextMenuConfiguration *config = [UIContextMenuConfiguration configurationWithIdentifier:nil previewProvider:nil
+        actionProvider:^UIMenu* _Nullable(NSArray<UIMenuElement*>* _Nonnull suggestedActions){
+        NSMutableArray *actions = [NSMutableArray new];
+        [actions addObject:[UIAction actionWithTitle:@"删除" image:nil identifier:nil handler:^(__kindof UIAction* _Nonnull action){
+            WEAKSELF(weakSelf)
+            [weakSelf cellDeleteAt:indexPath];
+        }]];
+        [actions addObject:[UIAction actionWithTitle:@"复制" image:nil identifier:nil handler:^(__kindof UIAction* _Nonnull action){
+            WEAKSELF(weakSelf)
+            [weakSelf cellCopyAt:indexPath];
+        }]];
+        [actions addObject:[UIAction actionWithTitle:@"回复" image:nil identifier:nil handler:^(__kindof UIAction* _Nonnull action){
+            WEAKSELF(weakSelf)
+            [weakSelf cellReplyAt:indexPath];
+        }]];
+        [actions addObject:[UIAction actionWithTitle:@"+1" image:nil identifier:nil handler:^(__kindof UIAction* _Nonnull action){
+            WEAKSELF(weakSelf)
+            [weakSelf cellPlusOneAt:indexPath];
+        }]];
+        UIMenu *menu = [UIMenu menuWithTitle:@"" children:actions];
+        return menu;
+    }];
+    
+    return config;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 20;
+    NSUInteger section = indexPath.section, row = indexPath.row;
+    NSString *text = self.news[section].commentList[row];
+    CGSize labelSize = [text sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:16.0] constrainedToSize:CGSizeMake(self.tableView.frame.size.width / 3 * 2, 1000) lineBreakMode:NSLineBreakByWordWrapping];
+    //CGSize textSize = [text sizeWithAttributes:@{ NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size:16.0]}];
+    return labelSize.height + 10;
 }
+
 #pragma mark 底部的按钮代理
--(void)didClickCommentBtnWithTag:(int)tag
+-(void)didClickCommentBtnWithTag:(NSUInteger)tag
 {
     //NSLog(@"commentBtn was clicked in newsVC from %d", tag);
     self.sectionTag = tag;

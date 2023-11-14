@@ -11,6 +11,7 @@
 #import "SlideCell.h"
 #import "SCCustomButton.h"
 #import "SettingViewController.h"
+#import "PersonInfoViewController.h"
 
 @interface SlideViewController()
 
@@ -50,12 +51,16 @@
     self.topView = [UIView new];
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 0, 50, 50)];
     imgView.image = [UIImage imageNamed:@"paidaxing"];
+    imgView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(iconTap:)];
+    [imgView addGestureRecognizer:tap];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(80, 10, 70, 20)];
     label.text = @"tour1st";
     [self.topView addSubview:label];
     [self.topView addSubview:imgView];
     
     self.bottomView = [UIView new];
+    self.bottomView.backgroundColor = [UIColor whiteColor];
     //self.bottomView.backgroundColor = [UIColor blackColor];
     self.tableView = [UITableView new];
     self.tableView.delegate = self;
@@ -111,19 +116,27 @@
     
     [settingBtn mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(self.bottomView).offset(20);
-        make.top.equalTo(self.bottomView).offset(10);
+        make.top.equalTo(self.bottomView).offset(15);
     }];
    
     [moonBtn mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(settingBtn.mas_right).offset(20);
-        make.top.equalTo(self.bottomView).offset(10);
+        make.top.equalTo(self.bottomView).offset(15);
     }];
     
     [masterBtn mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.equalTo(moonBtn.mas_right).offset(20);
-        make.top.equalTo(self.bottomView).offset(10);
+        make.top.equalTo(self.bottomView).offset(15);
     }];
 
+}
+
+-(void)iconTap:(UITapGestureRecognizer *)tap
+{
+    NSUInteger tapSection = tap.view.tag;
+    PersonInfoViewController *personInfoVC = [PersonInfoViewController new];
+    personInfoVC.iconName = @"paidaxing";
+    [self.navigationController pushViewController:personInfoVC animated:YES];
 }
 
 #pragma mark tableViewDataSource
@@ -177,13 +190,16 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.self.navigationController.navigationBar.translucent = NO; // 不透明
     self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    self.self.navigationController.navigationBar.translucent = YES; // 透明
     self.edgesForExtendedLayout = UIRectEdgeAll;
 }
+
 
 @end

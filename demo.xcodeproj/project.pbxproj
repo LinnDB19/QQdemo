@@ -26,6 +26,7 @@
 		40AEAF5B2AF8DEDF00B15D54 /* JHControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AEAF5A2AF8DEDF00B15D54 /* JHControllerManager.m */; };
 		40AEAF5E2AF8E19500B15D54 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AEAF5D2AF8E19500B15D54 /* LoginViewController.m */; };
 		40AEAF612AF8E45500B15D54 /* JHUserDefaultStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AEAF602AF8E45500B15D54 /* JHUserDefaultStatus.m */; };
+		40CACDC82B03556A00400A58 /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CACDC72B03556A00400A58 /* PersonInfoViewController.m */; };
 		40CEB3232AE8BA860092C438 /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CEB3222AE8BA860092C438 /* CommentView.m */; };
 		40D1608D2AF9D38E000198B7 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D1608C2AF9D38E000198B7 /* SettingViewController.m */; };
 		40D197AD2A47E80800674955 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D197AC2A47E80800674955 /* AppDelegate.m */; };
@@ -116,6 +117,8 @@
 		40AEAF5D2AF8E19500B15D54 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		40AEAF5F2AF8E43800B15D54 /* JHUserDefaultStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JHUserDefaultStatus.h; sourceTree = "<group>"; };
 		40AEAF602AF8E45500B15D54 /* JHUserDefaultStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JHUserDefaultStatus.m; sourceTree = "<group>"; };
+		40CACDC62B03554300400A58 /* PersonInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonInfoViewController.h; sourceTree = "<group>"; };
+		40CACDC72B03556A00400A58 /* PersonInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonInfoViewController.m; sourceTree = "<group>"; };
 		40CEB3212AE8BA600092C438 /* CommentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentView.h; sourceTree = "<group>"; };
 		40CEB3222AE8BA860092C438 /* CommentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CommentView.m; path = demo/View/CommentView.m; sourceTree = SOURCE_ROOT; };
 		40CEB3242AE8C76F0092C438 /* Delegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Delegate.h; sourceTree = "<group>"; };
@@ -141,7 +144,6 @@
 		40D8B0FC2AF390A7003E6C6E /* SCCustomButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCCustomButton.m; sourceTree = "<group>"; };
 		40D8B0FE2AF39150003E6C6E /* UIView+SCLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SCLayout.m"; sourceTree = "<group>"; };
 		40D8B0FF2AF39151003E6C6E /* UIView+SCLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SCLayout.h"; sourceTree = "<group>"; };
-		40D8B1012AF3AA13003E6C6E /* UIScrollView+simu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+simu.h"; sourceTree = "<group>"; };
 		40D8B1022AF3B1D1003E6C6E /* NormalTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NormalTableVC.h; sourceTree = "<group>"; };
 		40D8B1032AF3B1E8003E6C6E /* NormalTableVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NormalTableVC.m; sourceTree = "<group>"; };
 		40E3E4232AF4E4800066D4B9 /* PageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
@@ -285,7 +287,6 @@
 				40FAB2C42AEB5C04009D1145 /* ImageZoom.m */,
 				40D8B0FB2AF39080003E6C6E /* SCCustomButton.h */,
 				40D8B0FC2AF390A7003E6C6E /* SCCustomButton.m */,
-				40D8B1012AF3AA13003E6C6E /* UIScrollView+simu.h */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -387,6 +388,8 @@
 				40FC76A42AF75801002716B9 /* AddFriendViewController.m */,
 				40FC76B82AF7F46E002716B9 /* CusViewController.h */,
 				40FC76B72AF7F46E002716B9 /* CusViewController.m */,
+				40CACDC62B03554300400A58 /* PersonInfoViewController.h */,
+				40CACDC72B03556A00400A58 /* PersonInfoViewController.m */,
 				40FC76A22AF7575B002716B9 /* message */,
 				40FC76A12AF7572A002716B9 /* contact */,
 				40358FD42A5E78B000526877 /* news */,
@@ -682,6 +685,7 @@
 				40D1608D2AF9D38E000198B7 /* SettingViewController.m in Sources */,
 				40F082412A57E0B0005EF033 /* SearchViewController.m in Sources */,
 				40FC76B62AF7F3C3002716B9 /* ChatBaseLeft.m in Sources */,
+				40CACDC82B03556A00400A58 /* PersonInfoViewController.m in Sources */,
 				40358FDE2A5E7E3100526877 /* TopView.m in Sources */,
 				40E3E4252AF4E4980066D4B9 /* PageViewController.m in Sources */,
 				40F082472A5810FF005EF033 /* AMessage.m in Sources */,

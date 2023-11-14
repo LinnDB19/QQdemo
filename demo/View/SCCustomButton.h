@@ -1,10 +1,3 @@
-//
-//  SCCustomButton.h
-//  demo
-//
-//  Created by LinDaobin on 2023/11/2.
-//
-
 #ifndef SCCustomButton_h
 #define SCCustomButton_h
 
@@ -13,7 +6,8 @@
 #import <UIKit/UIKit.h>
 
 /// 图片和文字的相对位置
-typedef NS_ENUM(NSInteger, SCCustomButtonImagePosition) {
+typedef NS_ENUM(NSInteger, SCCustomButtonImagePosition)
+{
     SCCustomButtonImagePositionTop,     // 图片在文字顶部
     SCCustomButtonImagePositionLeft,    // 图片在文字左侧
     SCCustomButtonImagePositionBottom,  // 图片在文字底部

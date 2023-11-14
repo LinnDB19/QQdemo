@@ -50,7 +50,11 @@
 
 - (UIImageView *)iconImageView
 {
-    if(!_iconImageView) _iconImageView = [UIImageView new];
+    if(!_iconImageView)
+    {
+        _iconImageView = [UIImageView new];
+        _iconImageView.userInteractionEnabled = YES;
+    }
     return _iconImageView;
 }
 

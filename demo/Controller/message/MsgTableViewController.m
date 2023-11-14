@@ -12,6 +12,7 @@
 #import "AddFriendViewController.h"
 #import "Macro.h"
 #import "CusViewController.h"
+#import "PersonInfoViewController.h"
 
 @interface MsgTableViewController () <UISearchResultsUpdating, UISearchControllerDelegate>
 
@@ -59,7 +60,11 @@ static const double SECTION_HEIGHT = 40, CELL_HEIGHT = 50;
     //顶部左端头像
     UIImageView *iconView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"paidaxing"]];
     iconView.contentMode = UIViewContentModeScaleAspectFit;
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:iconView];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(iconTouch)];
+    [iconView addGestureRecognizer:tap];
+    UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc] initWithCustomView:iconView];
+    leftBarItem.style = UIBarButtonItemStyleDone;
+    self.navigationItem.leftBarButtonItem = leftBarItem;
     
     //顶部右端按钮
     UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithTitle:@"添加" menu:nil];
@@ -68,7 +73,16 @@ static const double SECTION_HEIGHT = 40, CELL_HEIGHT = 50;
     UIAction *buildGroup = [UIAction actionWithTitle:@"创建群聊"
                                                image:nil
                                           identifier:nil
-                                             handler:^(UIAction *){NSLog(@"创建群聊");}];
+                                             handler:^(UIAction *){
+        WEAKSELF(weakSelf)
+        NSLog(@"创建群聊");
+        UIViewController *vc = [UIViewController new];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.title = @"创建群聊";
+        vc.view.backgroundColor = [UIColor whiteColor];
+        vc.view.frame = UIScreen.mainScreen.bounds;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    }];
     UIAction *addFriendGroup = [UIAction actionWithTitle:@"加好友/群"
                                                    image:nil
                                               identifier:nil
@@ -82,10 +96,20 @@ static const double SECTION_HEIGHT = 40, CELL_HEIGHT = 50;
     UIAction *scanning = [UIAction actionWithTitle:@"扫一扫"
                                              image:nil
                                         identifier:nil
-                                           handler:^(UIAction *){NSLog(@"扫一扫");}];
+                                           handler:^(UIAction *){
+        WEAKSELF(weakSelf)
+        NSLog(@"扫一扫");
+        UIViewController *vc = [UIViewController new];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.title = @"扫一扫";
+        vc.view.backgroundColor = [UIColor whiteColor];
+        vc.view.frame = UIScreen.mainScreen.bounds;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    }];
     NSArray *actions = @[buildGroup, addFriendGroup, scanning];
     UIMenu *menu = [UIMenu menuWithChildren:actions];
-    menu.preferredElementSize = UIMenuElementSizeLarge;
+    if(@available(iOS 16.0, *))
+        menu.preferredElementSize = UIMenuElementSizeLarge;
     rightItem.menu = menu;
     self.navigationItem.rightBarButtonItem = rightItem;
     
@@ -118,6 +142,13 @@ static const double SECTION_HEIGHT = 40, CELL_HEIGHT = 50;
     }
     
     _allMsgs = [NSArray arrayWithArray:_msgs];
+}
+
+-(void)iconTouch
+{
+    PersonInfoViewController *personInfoVC = [PersonInfoViewController new];
+    personInfoVC.iconName = @"paidaxing";
+    [self.navigationController pushViewController:personInfoVC animated:YES];
 }
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
